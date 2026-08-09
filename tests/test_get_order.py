@@ -26,7 +26,7 @@ class TestGetOrder:
         response = OrderAPI.get_order_by_track(None)
 
         assert response.status_code == 400
-        assert "Недостаточно данных для поиска" in response.text
+        assert TestData.ERROR_MESSAGES["insufficient_data_for_search"] in response.text
 
     @allure.title('Получение заказа с несуществующим номером')
     def test_get_order_nonexistent_track(self):
@@ -35,4 +35,4 @@ class TestGetOrder:
         response = OrderAPI.get_order_by_track(track)
 
         assert response.status_code == 404
-        assert "Заказ не найден" in response.text
+        assert TestData.ERROR_MESSAGES["order_not_found_by_track"] in response.text
